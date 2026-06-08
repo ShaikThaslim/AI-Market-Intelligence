@@ -85,4 +85,4 @@ if st.button("Start Intelligent Analysis"):
 
   st.success("Analysis Complete!")
   st.markdown("### 📊 Final Report")
-  st.write(result)
+  st.markdown(result.raw)
