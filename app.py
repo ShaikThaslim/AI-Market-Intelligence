@@ -6,6 +6,15 @@ from crewai.tools import tool
 from crewai import Agent, Task, Crew, LLM
 from dotenv import load_dotenv
 
+hide_st_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_st_style, unsafe_allow_html=True)
+
 load_dotenv()
 
 openrouter_llm = LLM(
