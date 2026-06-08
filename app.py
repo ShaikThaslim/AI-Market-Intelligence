@@ -18,13 +18,18 @@ target_url = st.text_input("Enter competitor's website URL:", "https://zomato.co
 
 @tool("Enterprise web scraper")
 def scrape_site(url):
-  """useful to scrape web content"""
-  response = requests.get(url)
-
-  soup = BeautifulSoup(response.text, 'html.parser')
-
-  clean_text = soup.get_text()
-  return clean_text
+    """useful to scrape web content"""
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    }
+    
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        soup = BeautifulSoup(response.text, 'html.parser')
+        clean_text = soup.get_text()
+        return clean_text
+    else:
+        return f"Failed to retrieve content. Status code: {response.status_code}"
 
 intelligence_agent = Agent(
   role="Senior Corporate Intelligence Analyst",
